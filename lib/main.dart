@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/blocs/counter_bloc.dart';
+import 'package:flutter_bloc/blocs/post_bloc.dart';
 import 'package:flutter_bloc/blocs/theme_bloc.dart';
 import 'package:flutter_bloc/pages/counter_page.dart';
+import 'package:flutter_bloc/widgets/post_item.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -16,6 +18,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<ThemeChanger>.value(
             value: ThemeChanger(ThemeData.light())
+          ),
+          ChangeNotifierProvider<PostBloc>.value(
+            value: PostBloc()
           )
         ], 
         child: MaterialAppWithTheme(),
@@ -28,6 +33,8 @@ class MaterialAppWithTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeChanger>(context);
+    final postBloc = Provider.of<PostBloc>(context);
+    postBloc.fetchPost();
 
     return MaterialApp(
       home: DefaultTabController(
@@ -48,7 +55,7 @@ class MaterialAppWithTheme extends StatelessWidget {
           body: TabBarView(
             children: [
               CounterPage(),
-              Icon(Icons.directions_transit),
+              PostItem(post: postBloc.post),
               Icon(Icons.directions_bike),
               Icon(Icons.mail),
             ],
