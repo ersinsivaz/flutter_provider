@@ -6,6 +6,8 @@ import 'package:flutter_bloc/pages/counter_page.dart';
 import 'package:flutter_bloc/widgets/post_item.dart';
 import 'package:provider/provider.dart';
 
+import 'forms/post_form.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -56,7 +58,7 @@ class MaterialAppWithTheme extends StatelessWidget {
             children: [
               CounterPage(),
               PostItem(post: postBloc.post),
-              Icon(Icons.directions_bike),
+              PostForm(),
               Icon(Icons.mail),
             ],
           ),
