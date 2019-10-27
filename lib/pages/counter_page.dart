@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/blocs/counter_bloc.dart';
 import 'package:flutter_bloc/widgets/decrement.dart';
 import 'package:flutter_bloc/widgets/increment.dart';
+import 'package:flutter_bloc/widgets/loading_container.dart';
 import 'package:flutter_bloc/widgets/theme_dark.dart';
 import 'package:flutter_bloc/widgets/theme_light.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,8 @@ class CounterPage extends StatelessWidget{
               IncrementButton(),
               DecrementButton(),
               LightThemeButton(),
-              DarkThemeButton()
+              DarkThemeButton(),
+              LoadingContainer(isVisible: counterBloc.isLoading,),
             ],
           ),
         ),
